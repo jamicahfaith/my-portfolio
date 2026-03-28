@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jamicah Faith Pastolero, RN &mdash; Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --navy: #1e2a6e;
+      --navy-dark: #16205a;
+      --cream: #f5ede2;
+      --cream-light: #faf5ee;
+      --accent: #2d3f8e;
+      --white: #ffffff;
+      --text-light: #e8e4f8;
+      --dot-color: #3a4fa0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream-light);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(30, 42, 110, 0.96);
+      backdrop-filter: blur(10px);
+      padding: 0 5%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: var(--cream);
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: var(--navy-dark);
+      padding: 1.5rem 5%;
+      z-index: 99;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .mobile-menu a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 1rem;
+    }
+    .mobile-menu a:last-child { border-bottom: none; padding-bottom: 0; }
+    .mobile-menu.open { display: flex; }
+
+    /* ===== HERO SECTION — YOUR REDESIGN ===== */
+    #hero {
+      min-height: 100vh;
+      background: var(--cream);
+      padding-top: 40px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 4rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+    .hero-left { flex: 1; max-width: 600px; min-width: 500px; }
+    .hero-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      opacity: 0.75;
+    }
+    .hero-hello {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 0.95;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--navy);
+      margin-top: 0.5rem;
+    }
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      border: 1.5px solid var(--navy);
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--navy); color: var(--cream); }
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--navy);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .social-icon:hover { opacity: 0.8; transform: translateY(-2px); }
+    .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* Hero right — YOUR REDESIGN (no dot circle) */
+    .hero-right {
+      flex-shrink: 0;
+      position: relative;
+      width: clamp(340px, 45vw, 580px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-photo-wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .placeholder-img {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #c8d1ee 0%, #9fabd8 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1rem;
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* ===== SECTION BASE ===== */
+    section { scroll-margin-top: 60px; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .section-title em { font-style: italic; font-weight: 700; word-break: break-word }
+    .title-line {
+      flex: 1;
+      height: 2px;
+      background: currentColor;
+      opacity: 0.25;
+      border-radius: 2px;
+    }
+
+    /* ===== ABOUT SECTION — YOUR REDESIGN ===== */
+    #about {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 6rem 5%;
+    }
+    .about-inner { max-width: 1200px; margin: 0 auto; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: center;
+    }
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.2rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.12);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .about-photo:hover img {
+      transform: scale(1.1); /* Zoom effect */
+    }
+
+
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);}
+    .about-photo .placeholder-img { background: linear-gradient(135deg,#2d3f8e,#1e2a6e); color: rgba(255,255,255,0.5); }
+
+    /* ===== CLINICAL EXPERIENCE ===== */
+    #experience { background: var(--cream); padding: 6rem 5%; }
+    .exp-inner { max-width: 1200px; margin: 0 auto; }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .exp-card {
+      background: var(--navy);
+      color: var(--cream);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .exp-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(30,42,110,0.25); }
+    .exp-card-photo { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; }
+    .exp-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .exp-card-photo .placeholder-img {
+      background: linear-gradient(135deg,#2d3f8e,#1a2868);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+    }
+    .exp-card-body { padding: 1.4rem; }
+    .exp-card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.2rem;
+    }
+    .exp-card-date { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; opacity: 0.6; margin-bottom: 0.8rem; }
+    .exp-card-hospitals { font-size: 0.75rem; font-style: italic; opacity: 0.75; margin-bottom: 0.9rem; line-height: 1.55; }
+    .exp-card-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+    .exp-card-list li { font-size: 0.78rem; line-height: 1.5; padding-left: 1rem; position: relative; opacity: 0.88; }
+    .exp-card-list li::before { content: '·'; position: absolute; left: 0; font-size: 1.2rem; line-height: 1; top: 0.05rem; }
+
+    /* ===== TOOLS ===== */
+    #tools { background: var(--cream-light); padding: 6rem 5%; }
+    .tools-inner { max-width: 1200px; margin: 0 auto; }
+    .tools-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .tool-card {
+      background: var(--navy);
+      color: var(--cream);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .tool-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(30,42,110,0.22); }
+    .tool-card-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tool-card-icon svg { width: 26px; height: 26px; }
+    .tool-card-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .tool-card-sub { font-size: 0.75rem; opacity: 0.6; letter-spacing: 0.05em; }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--navy-dark); color: var(--cream); padding: 6rem 5%; }
+    .contact-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .contact-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .contact-heading em { font-style: italic; font-weight: 700; }
+    .contact-sub { opacity: 0.55; font-size: 0.9rem; margin-bottom: 3rem; letter-spacing: 0.03em; }
+    .contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .contact-cards {grid-template-columns: repeat(3, minmax(260px, 1fr));}
+    .contact-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--cream);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.13); transform: translateY(-4px); }
+    .contact-card-static { cursor: default; }
+    .contact-card-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.2rem;
+    }
+    .contact-card-icon svg { width: 22px; height: 22px; }
+    .contact-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.55; }
+    .contact-card-value { font-size: 0.85rem; font-weight: 500; line-height: 1.4; word-break: break-word; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy-dark);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 1.5rem 5%;
+      text-align: center;
+      color: rgba(232,228,248,0.4);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      #hero { padding-top: 20px; }
+      .hero-inner { gap: 2rem; }
+      .hero-left { min-width: 200px; }
+      .exp-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 320px; margin: 0 auto; }
+      .tools-cards { grid-template-columns: repeat(2, 1fr); }
+      .contact-cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { gap: 2rem; }
+      .hero-left { min-width: 300px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 3rem 5%;
+      }
+      .hero-right { width: 65vw; max-width: 280px; }
+      .hero-cta-row { justify-content: center; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .tools-cards { grid-template-columns: repeat(2, 1fr); }
+      .contact-cards { grid-template-columns: 1fr; }
+      .section-title { font-size: clamp(1.4rem, 5vw, 2rem); }
+    }
+
+    @media (max-width: 480px) {
+      #hero { padding-top: 20px; }
+      .hero-inner { gap: 1rem; }
+      .hero-left { min-width: 300px; }
+      .hero-hello { font-size: clamp(2.8rem, 14vw, 5rem); }
+      .hero-name { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+      .tools-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">JAM</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero"       onclick="closeMenu()">Home</a>
+    <a href="#about"      onclick="closeMenu()">About</a>
+    <a href="#experience" onclick="closeMenu()">Experience</a>
+    <a href="#tools"      onclick="closeMenu()">Tools</a>
+    <a href="#contact"    onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- HERO — YOUR REDESIGN -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <p class="hero-tag">Medical Virtual Assistant · Registered Nurse · HIPAA Certified</p>
+        <h1 class="hero-hello">Hello!</h1>
+        <p class="hero-name">I'm Jamicah Faith<br>Pastolero, RN</p>
+        <div class="hero-cta-row">
+          <div class="social-icons">
+            <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="var(--navy)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--navy)" stroke-width="2" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-photo-wrap">
+          <img src="images/hero.png" alt="Jamicah Faith Pastolero" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="placeholder-img" style="display:none">Your Photo Here</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT — YOUR REDESIGN -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="section-title reveal" style="color:var(--cream); font-size: clamp(1.8rem, 4vw, 2.8rem);">
+        <span>About</span>
+        <em>&nbsp;Me</em>
+        <span class="title-line"></span>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>I am a Registered Nurse with a Bachelor of Science in Nursing from the University of Perpetual Help System DALTA &ndash; Calamba Campus, having passed the Philippine Nurse Licensure Examination in February 2026. With hands-on clinical experience and a strong foundation in patient care, I bring a detail-oriented, compassionate, and highly organized approach to healthcare. I am also HIPAA-certified, ensuring strict compliance with patient confidentiality and data security standards.</p>
+          <p>As I transition into a Medical Virtual Assistant role, I offer a blend of clinical knowledge and administrative expertise, including patient scheduling, medical records management (EHR/EMR), insurance verification, and medical documentation. I am skilled in communication across phone, email, and chat, and thrive in fast-paced environments where accuracy and efficiency are essential. My goal is to support healthcare providers by delivering reliable, high-quality virtual assistance while maintaining excellent patient-centered service.</p>
+        </div>
+        <div class="about-photo reveal">
+          <img src="images/grad-pic.png" alt="Jamicah graduation photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="placeholder-img" style="display:none">Graduation Photo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL EXPERIENCE -->
+  <section id="experience">
+    <div class="exp-inner">
+      <div class="section-title reveal" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">
+        <span class="title-line"></span>
+        <span>Clinical</span>
+        <em>&nbsp;Experience</em>
+        <span class="title-line"></span>
+      </div>
+      <div class="exp-grid">
+
+        <!-- Emergency Room -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/emergency.png" alt="Emergency Room" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">ER Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Emergency Room</div>
+            <div class="exp-card-date">April &ndash; May 2025 | November 2024</div>
+            <div class="exp-card-hospitals">Dr. Jose P. Rizal District Hospital · Global Care Medical Center · Bay District Hospital</div>
+            <ul class="exp-card-list">
+              <li>Monitored and recorded vital signs</li>
+              <li>Assisted in emergency procedures and patient stabilization</li>
+              <li>Assisted in wound care and dressing</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Infectious Disease -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/infectious.png" alt="San Lazaro Hospital" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Infectious Disease Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Infectious Disease Nursing</div>
+            <div class="exp-card-date">March 2025</div>
+            <div class="exp-card-hospitals">San Lazaro Hospital</div>
+            <ul class="exp-card-list">
+              <li>Assisted in care of patients with infectious diseases, monitoring vital signs and patient status</li>
+              <li>Implemented and performed health education about infection control and isolation protocols</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Medical Ward -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/medical.png" alt="Medical Ward" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Medical Ward Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Medical Ward</div>
+            <div class="exp-card-date">September 2023 &ndash; March 2025</div>
+            <div class="exp-card-hospitals">Calamba Medical Center · Dr. Jose P. Rizal District Hospital · Global Care Medical Center · Saint John the Baptist Medical Center · Bay District Hospital</div>
+            <ul class="exp-card-list">
+              <li>Performed bedside patient care</li>
+              <li>Monitored and recorded vital signs</li>
+              <li>Assisted in medication administration under supervision</li>
+              <li>Performed wound care and dressing changes</li>
+              <li>Performed urinary catheter insertion and removal</li>
+              <li>Monitored IV fluids and intake/output</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Dialysis Unit -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/dialysis.png" alt="Dialysis Unit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Dialysis Unit Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Dialysis Unit</div>
+            <div class="exp-card-date">January &ndash; February 2025</div>
+            <div class="exp-card-hospitals">Calamba Medical Center</div>
+            <ul class="exp-card-list">
+              <li>Assisted nurses during hemodialysis procedures</li>
+              <li>Monitored patient vital signs before, during, and after dialysis</li>
+              <li>Observed patients for complications during treatment</li>
+              <li>Assisted in preparation of dialysis equipment</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ICU -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/ICU.png" alt="Intensive Care Unit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">ICU Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Intensive Care Unit</div>
+            <div class="exp-card-date">February 2025 | August &ndash; September 2024</div>
+            <div class="exp-card-hospitals">Global Care Medical Center · Calamba Medical Center</div>
+            <ul class="exp-card-list">
+              <li>Performed tracheostomy suctioning</li>
+              <li>Monitored critically ill patients</li>
+              <li>Recorded vital signs and neurological assessments</li>
+              <li>Assisted nurses during bedside procedures</li>
+              <li>Maintained strict infection control practices</li>
+              <li>Assisted with patient hygiene and comfort care</li>
+              <li>Monitored IV lines and infusion therapy</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Operating Room -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/operating.jpg" alt="Operating Room" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">OR Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Operating Room</div>
+            <div class="exp-card-date">November 2023 &ndash; October 2024</div>
+            <div class="exp-card-hospitals">Calamba Medical Center</div>
+            <ul class="exp-card-list">
+              <li>Assisted the surgical team in preparing the operating room</li>
+              <li>Prepared sterile instruments and surgical equipment</li>
+              <li>Maintained aseptic and sterile techniques</li>
+              <li>Helped in instrument counting and surgical documentation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Delivery Room -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/delivery.png" alt="Delivery Room" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Delivery Room Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Delivery Room</div>
+            <div class="exp-card-date">November 2022 &ndash; May 2024</div>
+            <div class="exp-card-hospitals">Dr. Jose P. Rizal District Hospital · Global Care Medical Center · Laguna Medical Center · Saint John the Baptist Medical Center</div>
+            <ul class="exp-card-list">
+              <li>Assisted during labor and delivery procedure</li>
+              <li>Monitored maternal vital signs and fetal heart rate</li>
+              <li>Assisted with newborn initial care</li>
+              <li>Supported mothers during labor and postpartum care</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Psychiatric Nursing -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/psych.jpg" alt="Psychiatric Nursing" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Psychiatric Nursing Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Psychiatric Nursing</div>
+            <div class="exp-card-date">April &ndash; May 2024</div>
+            <div class="exp-card-hospitals">National Center for Mental Health · Cavite Center for Mental Health</div>
+            <ul class="exp-card-list">
+              <li>Assisted in mental health assessment and observation</li>
+              <li>Facilitated therapeutic communication with patients</li>
+              <li>Assisted in group activities and therapeutic programs</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Orthopedic Nursing -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/ortho.png" alt="Orthopedic Nursing" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Orthopedic Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Orthopedic Nursing</div>
+            <div class="exp-card-date">May &ndash; June 2024</div>
+            <div class="exp-card-hospitals">Philippine Orthopedic Center</div>
+            <ul class="exp-card-list">
+              <li>Performed demonstration of how to apply casts and traction</li>
+              <li>Observed different types of splints, casts and traction</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Geriatric Care -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/geria.jpg" alt="Geriatric Care" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Geriatric Care Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Geriatric Care</div>
+            <div class="exp-card-date">December 2023 &ndash; January 2024</div>
+            <div class="exp-card-hospitals">Mother Ignacia Home for the Elderly</div>
+            <ul class="exp-card-list">
+              <li>Assisted elderly residents with activities of daily living</li>
+              <li>Monitored vital signs and general health status</li>
+              <li>Assisted in mobility and hygiene care</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pediatric Ward -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/pedia.png" alt="Pediatric Ward" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">Pediatric Ward Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Pediatric Ward</div>
+            <div class="exp-card-date">December 2022 &ndash; June 2023</div>
+            <div class="exp-card-hospitals">Calamba Medical Center · Dr. Jose P. Rizal District Hospital · Global Medical Center · Laguna Medical Center</div>
+            <ul class="exp-card-list">
+              <li>Provided nursing care to pediatric patients</li>
+              <li>Monitored growth, development, and vital signs</li>
+              <li>Assisted in medication administration</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Obstetric Ward -->
+        <div class="exp-card reveal">
+          <div class="exp-card-photo">
+            <img src="images/obstetric.png" alt="Obstetric Ward" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="placeholder-img" style="display:none">OB Ward Photo</div>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-title">Obstetric Ward</div>
+            <div class="exp-card-date">September 2022 &ndash; May 2023</div>
+            <div class="exp-card-hospitals">Calamba Medical Center · Dr. Jose P. Rizal District Hospital · Global Medical Center · Saint John the Baptist Medical Center · Laguna Medical Center</div>
+            <ul class="exp-card-list">
+              <li>Provided nursing care to antepartum and postpartum patients</li>
+              <li>Monitored maternal vital signs and postpartum recovery</li>
+              <li>Assisted in breastfeeding education and newborn care</li>
+              <li>Assisted in maternal assessments and documentation</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /exp-grid -->
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <div class="tools-inner">
+      <div class="section-title reveal" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">
+        <span class="title-line"></span>
+        <span>Tools &amp;</span>
+        <em>&nbsp;Skills</em>
+        <span class="title-line"></span>
+      </div>
+      <div class="tools-cards">
+
+        <div class="tool-card reveal">
+          <div class="tool-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.8">
+              <rect x="3" y="4" width="18" height="13" rx="2"/><path d="M1 21h22"/><path d="M9 17v4m6-4v4"/>
+            </svg>
+          </div>
+          <div class="tool-card-name">Electronic Health Records</div>
+          <div class="tool-card-sub">EHR / EMR</div>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.8">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <div class="tool-card-name">Google Workspace</div>
+          <div class="tool-card-sub">Docs · Sheets · Gmail</div>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.8">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
+            </svg>
+          </div>
+          <div class="tool-card-name">Microsoft Office</div>
+          <div class="tool-card-sub">Word · Excel</div>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.8">
+              <path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.36a1 1 0 0 1-1.447.89L15 14"/>
+              <rect x="1" y="6" width="15" height="12" rx="2"/>
+            </svg>
+          </div>
+          <div class="tool-card-name">Telehealth Platforms</div>
+          <div class="tool-card-sub">Zoom · Skype</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <h2 class="contact-heading reveal">Get In <em>Touch</em></h2>
+      <p class="contact-sub reveal">Feel free to reach out &mdash; I&rsquo;d love to connect!</p>
+      <div class="contact-cards">
+
+        <a href="tel:+639685574975" class="contact-card reveal">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.8">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-value">+63 9685574975</div>
+        </a>
+
+        <a href="mailto:jamicahfaithpastolero@gmail.com" class="contact-card reveal">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.8">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">jamicahfaithpastolero@gmail.com</div>
+        </a>
+
+        <div class="contact-card contact-card-static reveal">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.8">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="contact-card-label">Location</div>
+          <div class="contact-card-value">Calamba City, Laguna, Philippines</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 Jamicah Faith Pastolero, RN &nbsp;&middot;&nbsp; All rights reserved
+  </footer>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', function() { mobileMenu.classList.toggle('open'); });
+    function closeMenu() { mobileMenu.classList.remove('open'); }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function(el) { observer.observe(el); });
+  </script>
+</body>
+</html>
